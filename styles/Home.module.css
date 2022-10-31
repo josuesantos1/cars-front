@@ -33,7 +33,6 @@
   flex-direction: column;
   justify-content: space-evenly;
 
-  height: 40vh;
   padding: 1rem 5rem;
 
   border: 0.25em solid #0070f3;
@@ -42,6 +41,7 @@
 
 .form input {
   padding: 1rem;
+  margin: 0.5rem 0;
 
   color: #0070f3;
 
