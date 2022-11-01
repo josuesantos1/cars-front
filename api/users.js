@@ -4,4 +4,8 @@ const signUp = async (body) => {
     return await axios.post(`${process.env.URL}/users`, body)
 }
 
-export default { signUp }
+const signIn = async (body) => {
+    return await axios.post(`${process.env.URL}/signin`, body)
+}
+
+export default { signUp, signIn }
