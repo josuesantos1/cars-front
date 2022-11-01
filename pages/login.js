@@ -1,7 +1,35 @@
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
+
 import styles from '../styles/Home.module.css'
+import users from '../api/users'
 
 export default function Home() {
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+
+  const router = useRouter()
+
+  const handlerEmail = (e) => {
+    setEmail(e.target.value)
+  }
+
+  const handlerPassword = (e) => {
+    setPassword(e.target.value)
+  }
+
+  const HandlerSignIn = async () => {
+    const user = {email, password}
+
+    users.signIn(user).then(user => {
+      localStorage.setItem("token", user.token);
+      router.push("/admin")
+    }).catch(e => {
+      localStorage.clear()
+    })
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,12 +42,12 @@ export default function Home() {
         <h1 className={styles.title}>
           Cars
         </h1>
-        <form className={styles.form}>
-            <input type='email' placeholder="e-mail"/>
-            <input type='password' placeholder="password"/>
-            <button type='submit'>login</button>
+        <div className={styles.form}>
+            <input type='email' placeholder="e-mail" onChange={handlerEmail}/>
+            <input type='password' placeholder="password" onChange={handlerPassword}/>
+            <button onClick={HandlerSignIn}>login</button>
             <a>esqueci minha senha</a>
-        </form>
+        </div>
       </main>
     </div>
   )
