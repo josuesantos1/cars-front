@@ -19,4 +19,12 @@ const view = async () => {
     })
 }
 
+const update = async (body) => {
+    return await axios.post(url, body, {
+        headers: {
+            Authorization: token
+        }
+    })
+}
+
 export default { signUp, signIn, view }
