@@ -23,10 +23,9 @@ export default function Home() {
     const user = {email, password}
 
     users.signIn(user).then(user => {
-      localStorage.setItem("token", user.token);
+      localStorage.setItem("token", user.data.token);
       router.push("/admin")
     }).catch(e => {
-      localStorage.clear()
     })
   }
 
